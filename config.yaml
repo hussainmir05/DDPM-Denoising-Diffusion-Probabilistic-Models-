@@ -1,0 +1,40 @@
+# config.yaml
+
+device: cuda
+
+dataset:
+  data_path: ./data
+  image_size: 128
+  channels: 3
+  normalize: true
+
+training:
+  batch_size: 16
+  epochs: 100
+  learning_rate: 0.0001
+  num_workers: 4
+
+diffusion:
+  timesteps: 1000
+  beta_start: 0.0001
+  beta_end: 0.02
+
+model:
+  name: unet
+  base_channels: 64
+  channel_mults: [1, 2, 4, 8]
+  num_res_blocks: 2
+  dropout: 0.1
+
+task:
+  type: denoising   # options: denoising, super_resolution, restoration
+
+logging:
+  save_dir: ./checkpoints
+  log_interval: 100
+  sample_interval: 1
+
+wandb:
+  use: true
+  project: diffusion-project
+  run_name: ddpm_experiment_1
